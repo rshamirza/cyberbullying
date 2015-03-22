@@ -6,4 +6,4 @@ module.exports = function(app) {
                 survey: res
             })
     })
-}
+};
