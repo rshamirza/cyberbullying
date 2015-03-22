@@ -1,6 +1,7 @@
 $(document).ready(checkForChecked());
 
 $('#next-btn').on('click', function () {
+    $(this).toggleClass('not-active');
     var params = {};
     $(':checked').each(function () {
         params[$(this).attr('name')] = $(this).val();
@@ -10,11 +11,11 @@ $('#next-btn').on('click', function () {
     $.ajax({
         type: 'POST',
         url: '/results',
-        data: params,
+        data: JSON.stringify(params),
         contentType: 'application/json',
-        dataType: 'json',
         success: function (data) {
-            alert(data);
+            var pathParts = window.location.pathname.split("/");
+            moveToNext(pathParts[pathParts.length - 1]);
         },
         failure: function (err) {
             alert(err);
@@ -28,10 +29,19 @@ $('input[type="radio"]').change(function () {  //shortcut for .on('change', func
 });
 
 function checkForChecked() {
-    console.log('hello');
     var yes = $('.yes:checked').length;
     var no = $('.no:checked').length;
     if (yes + no == 2) {
         $('#next-btn').toggleClass('not-active');
     }
+}
+
+function moveToNext(current) {
+    var index = parseInt(current) + 1;
+    //$.ajax({
+    //    type: 'GET',
+    //    url: '/survey/' + index,
+    //    async: false
+    //})
+    window.location.href = '/survey/' + index;
 }
