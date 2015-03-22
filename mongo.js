@@ -43,12 +43,9 @@ app.get('/list/overview', function(req, res) {
 app.get('/list/results', function(req, res) {
     var result = app.db.get('responses');
 
-    console.log(result);
-    // execute the query to find those matched limiting to 20
-    result.find({}, {}, function(err, results) {
-        console.log(res);
+    result.find({},{}, function(err, res1) {
         res.render('surveyResults.jade', {
-            surveyRes: res
+            surveyRes: res1
         })
     })
 
