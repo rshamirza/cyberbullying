@@ -42,7 +42,7 @@ block content
                 - var comment = eval(user.comment + n.toString());
                 - var creation_time = eval(user.creation_time + n.toString());
                 - if (id != "" && id !=" ") {
-                    b.inline #{id} :                    
+                    b.inline #{id} :
                     | #{comment}
                     br
                     small #{creation_time}
@@ -50,5 +50,3 @@ block content
                     br
                 - }
                 - n++;
-
-        
