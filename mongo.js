@@ -36,16 +36,21 @@ app.get('/survey/:index', function(req, res) {
 
 
 app.get('/list/overview', function(req, res) {
-    res.render('surveyOverview.jade', {
-        survey: survey
-    })
-});
+    res.render('surveyOverview.jade')
+})
+
 
 app.get('/list/results', function(req, res) {
+    var result = app.db.get('responses')
 
-    res.render('surveyResults.jade', {
-        survey: survey
+    // execute the query to find those matched limiting to 20
+    result.find({}, function(err, res) {
+
+        res.render('surveyResults.jade', {
+            surveyRes: res
+        })
     })
+
 });
 
 app.post('/results/:params', function (req, res) {
