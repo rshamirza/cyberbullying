@@ -1,5 +1,5 @@
 var express = require('express');
-var Qs = require('qs');
+var bodyParser = require('body-parser');
 var app = express();
 
 // dburl to a mongodb server hosted in the cloud (i.e., mongolab)
@@ -8,6 +8,9 @@ var survey = require('./data/survey.json');
 
 // get db
 var db = require('monk')(dburl);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // set the database
 app.db = db;
@@ -53,10 +56,8 @@ app.get('/list/results', function(req, res) {
 
 app.post('/results', function (req, res) {
     var responsesCollection = db.get('responses');
-    var paramsObject = Qs.parse(req.params.params);
-    console.log('params Object: ');
-    console.log(paramsObject);
-    responsesCollection.insert(paramsObject);
+    responsesCollection.insert(req.body);
+    res.send('done');
 });
 
 // set where the static contents are (e.g., css, js)
