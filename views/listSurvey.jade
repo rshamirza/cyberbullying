@@ -43,8 +43,8 @@ block content
             a(href='/list/survey/next/' + item.profile_owner_id)
                 | Next
             br
-            
-                
+
+
         div.four.columns
             - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
             h5 Comment:
@@ -53,13 +53,14 @@ block content
                 - var id = eval(user.id + n.toString());
                 - var comment = eval(user.comment + n.toString());
                 - var creation_time = eval(user.creation_time + n.toString());
-                if id
-                    b.inline #{id} :                    
+                - if (id != "" && id != " ") {
+                    b.inline #{id} :
                     | #{comment}
                     br
                     small #{creation_time}
                     br
                     br
+                - }
                 - n++;
 
-            
+
