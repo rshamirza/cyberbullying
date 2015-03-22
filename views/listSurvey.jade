@@ -1,54 +1,63 @@
-extends layout.jade
 block content
-    each item in survey
-        input(type='hidden', name='profile_owner_id', value=item.profile_owner_id)
-        input(type='hidden', name='caption_time', value=item.caption_time)
+    input(type='hidden', name='profile_owner_id', value=item.profile_owner_id)
+    input(type='hidden', name='caption_time', value=item.caption_time)
+    div.row
         div.six.columns
+            div.row
+                img(src=item.image_url) 
+                br  
+            div.row
+                small= item.caption_time
+                br
+                b= item.likes + ' likes'
+                br
+                b.inline= item.profile_owner_id + ': '
+                = item.owner_caption 
+                br
+                br 
 
-            img(src=item.image_url)    
-            b= item.likes + ' likes'
-            br
-            b.inline= item.profile_owner_id + ': '
-            = item.owner_caption 
-            br
-            small= item.caption_time
-            br
-            br
-            h5 Questions
-            | Is there any cyberaggressive behavior in the online posts? Mark yes if there is at least one negative word/comment and or content with intent to harm someone or others.
-            br
-            input(type="radio", name="q1", value="0", class="no")
-            | No
-            input(type="radio", name="q1", value="1", class="yes")
-            | Yes
-            br
-            | Is there any cyerbullying in the online post? Mark yes if there are negative words and or comment with intent to harm someone or other, and the posts include two or more repeated negativity against a victim that cannot easily defend him or herself
-            br
-            input(type="radio", name="q2", value="0", class="no")
-            | No
-            input(type="radio", name="q2", value="1", class="yes")
-            | Yes
-
-            br 
-            br   
-            a.button.not-active#next-btn Next
-            br
-            
-                
         div.six.columns
-            - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
-            h5 Comment:
-            - var n = 1;
-            while n < 150
-                - var id = eval(user.id + n.toString());
-                - var comment = eval(user.comment + n.toString());
-                - var creation_time = eval(user.creation_time + n.toString());
-                - if (id != "" && id !=" ") {
-                    b.inline #{id} :
-                    | #{comment}
-                    br
-                    small #{creation_time}
-                    br
-                    br
-                - }
-                - n++;
+            div.box 
+                - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
+                h5 Comment:
+                - var n = 1;
+                while n < 150
+                    - var id = eval(user.id + n.toString());
+                    - var comment = eval(user.comment + n.toString());
+                    - var creation_time = eval(user.creation_time + n.toString());
+                    - if (id != "" && id !=" ") {
+                        b.inline #{id} :                    
+                        | #{comment}
+                        br
+                        small #{creation_time}
+                        br
+                        br
+                    - }
+                    - n++;
+
+    div.row.container
+        h5.center Questions
+        | Is there any cyberaggressive behavior in the online posts? Mark yes if there is at least one negative word/comment and or content with intent to harm someone or others.
+        br
+        input(type="radio", name="q1", value="1", checked=q1=="No")
+        b No 
+        br
+        input(type="radio", name="q1", value="0", checked=q1=="Yes")
+        b Yes
+        br
+        | Is there any cyerbullying in the online post? Mark yes if there are negative words and or comment with intent to harm someone or other, and the posts include two or more repeated negativity against a victim that cannot easily defend him or herself
+        br
+        input(type="radio", name="q2", value="1", checked=q2=="No")
+        b No
+        br
+        input(type="radio", name="q2", value="0", checked=q2=="Yes")
+        b Yes
+  
+    div(align = 'center')  
+        a.button(href='/survey/'+ next) Next 
+        br
+        br
+    //div(align = 'center')  
+        //a.button(href='/list/results') Results 
+        
+        
