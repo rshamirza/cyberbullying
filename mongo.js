@@ -7,7 +7,7 @@ var dburl = 'mongodb://cyberbullying:1234@ds041140.mongolab.com:41140/cyberbully
 var survey = require('./data/survey.json');
 
 // get db
-var db = require('monk')(dburl)
+var db = require('monk')(dburl);
 
 // set the database
 app.db = db;
@@ -18,10 +18,10 @@ app.set('view engine', 'jade');
 
 app.get('/surveys', function (req, res) {
     res.redirect('survey/0')
-})
+});
 
 app.get('/survey/:index', function(req, res) {
-    var index = parseInt(req.params.index)
+    var index = parseInt(req.params.index);
     if (index >= 0 && index < survey.length)
     {
         var item = survey[req.params.index];
@@ -32,7 +32,7 @@ app.get('/survey/:index', function(req, res) {
     } else {
         res.redirect('/surveys')
     }
-})
+});
 
 
 app.get('/list/overview', function(req, res) {
@@ -41,21 +41,22 @@ app.get('/list/overview', function(req, res) {
     })
 });
 
+app.get('/list/results', function(req, res) {
+
+    res.render('surveyResults.jade', {
+        survey: survey
+    })
+});
+
 app.post('/results/:params', function (req, res) {
+    console.log("did we get in here?");
     var responsesCollection = db.get('responses');
     var paramsObject = Qs.parse(req.params.params);
     responsesCollection.insert(paramsObject);
 });
 
-app.get('/list/results', function(req, res) {
-    res.render('surveyResults.jade', {
-        survey: survey
-    })
-})
-
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
-
 
 var server = app.listen(3000, function() {
 

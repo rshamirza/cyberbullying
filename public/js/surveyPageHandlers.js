@@ -6,11 +6,12 @@ $('#next-btn').on('click', function () {
         params[$(this).attr('name')] = $(this).val();
     });
     var paramsString = JSON.stringify(params);
+    // todo don't forget hidden fields
     $.ajax({
         type: 'POST',
         url: '/results',
-        data: paramsString,
-        contentType: 'application/json; charset=utf-8',
+        data: params,
+        contentType: 'application/json',
         dataType: 'json',
         success: function (data) {
             goToNext();
@@ -27,6 +28,7 @@ $('input[type="radio"]').change(function () {  //shortcut for .on('change', func
 });
 
 function checkForChecked() {
+    console.log('hello');
     var yes = $('.yes:checked').length;
     var no = $('.no:checked').length;
     if (yes + no == 2) {
