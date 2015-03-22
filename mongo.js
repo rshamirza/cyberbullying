@@ -35,16 +35,23 @@ app.get('/survey/:index', function(req, res) {
 
 
 app.get('/list/overview', function(req, res) {
-    res.render('surveyOverview.jade', {
-        survey: survey
-    })
+    res.render('surveyOverview.jade')
 })
 
+
 app.get('/list/results', function(req, res) {
-    res.render('surveyResults.jade', {
-        survey: survey
+    var result = app.db.get('responses')
+
+    // execute the query to find those matched limiting to 20
+    result.find({}, function(err, res) {
+
+        res.render('surveyResults.jade', {
+            surveyRes: res
+        })
     })
+
 })
+
 
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
