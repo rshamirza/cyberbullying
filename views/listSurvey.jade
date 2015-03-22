@@ -1,5 +1,5 @@
 extends layout.jade
-block content    
+block content
     div.row
         div.six.columns
             div.row
@@ -14,7 +14,7 @@ block content
                 = item.owner_caption 
                 br
                 br 
-            
+
         div.six.columns
             div.box 
                 - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
@@ -38,23 +38,25 @@ block content
         h5.center Questions
         | Is there any cyberaggressive behavior in the online posts? Mark yes if there is at least one negative word/comment and or content with intent to harm someone or others.
         br
-        input(type="radio", name="q1", value="1", checked=q1=="No")
+        input(type="radio", name="q1", value="1", class="no")
         b No 
         br
-        input(type="radio", name="q1", value="0", checked=q1=="Yes")
+        input(type="radio", name="q1", value="0", class="yes")
         b Yes
         br
         | Is there any cyerbullying in the online post? Mark yes if there are negative words and or comment with intent to harm someone or other, and the posts include two or more repeated negativity against a victim that cannot easily defend him or herself
         br
-        input(type="radio", name="q2", value="1", checked=q2=="No")
+        input(type="radio", name="q2", value="1", class="no")
         b No
         br
-        input(type="radio", name="q2", value="0", checked=q2=="Yes")
+        input(type="radio", name="q2", value="0", class="yes")
         b Yes
   
     div(align = 'center')  
-        a.button(href='/survey/'+ next) Next 
+        a.button.not-active#next-btn Next
         br
         br
         
         
+    input(type='hidden', name='profile_owner_id', value=item.profile_owner_id)
+    input(type='hidden', name='caption_time', value=item.caption_time)

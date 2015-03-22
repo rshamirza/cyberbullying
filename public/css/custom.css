@@ -89,3 +89,7 @@ div.box
     margin-bottom: -0.1em;
 }
 
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
