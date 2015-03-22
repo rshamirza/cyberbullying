@@ -7,21 +7,29 @@ var survey = require('./data/survey.json');
 
 // get db
 var db = require('monk')(dburl);
-
 // set the database
 app.db = db;
 
 // use jade as the view engine
 app.set('view engine', 'jade');
 
-// set where the static contents are (e.g., css, js)
-app.use(express.static(__dirname + '/public'));
 
 app.get('/list/survey', function(req, res) {
     res.render('listSurvey.jade', {
         survey: survey
     })
 });
+
+app.get('/list/overview', function(req, res) {
+    res.render('surveyOverview.jade', {
+        survey: survey
+    })
+})
+
+// set where the static contents are (e.g., css, js)
+app.use(express.static(__dirname + '/public'));
+
+
 
 var server = app.listen(3000, function() {
 
