@@ -34,21 +34,23 @@ block content
             
                 
         div.six.columns
-            - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
-            h5 Comment:
-            - var n = 1;
-            while n < 150
-                - var id = eval(user.id + n.toString());
-                - var comment = eval(user.comment + n.toString());
-                - var creation_time = eval(user.creation_time + n.toString());
-                - if (id != "" && id !=" ") {
-                    b.inline #{id} :                    
-                    | #{comment}
-                    br
-                    small #{creation_time}
-                    br
-                    br
-                - }
-                - n++;
+            //textarea(id="theTextarea" rows="6", cols="66")
+            div.box 
+                - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
+                h5 Comment:
+                - var n = 1;
+                while n < 150
+                    - var id = eval(user.id + n.toString());
+                    - var comment = eval(user.comment + n.toString());
+                    - var creation_time = eval(user.creation_time + n.toString());
+                    - if (id != "" && id !=" ") {
+                        b.inline #{id} :                    
+                        | #{comment}
+                        br
+                        small #{creation_time}
+                        br
+                        br
+                    - }
+                    - n++;
 
-        
+            

@@ -7,8 +7,7 @@ var survey = require('./data/survey.json')
 
 // get db
 var db = require('monk')(dburl)
-//require('./mongo/surveyList')(app)
-//require('./mongo/surveyOverview')(app)
+
 // set the database
 app.db = db
 
@@ -23,7 +22,6 @@ app.get('/list/survey', function(req, res) {
 })
 
 app.get('/list/overview', function(req, res) {
-	console.log("did we get here?")
     res.render('surveyOverview.jade', {
         survey: survey
     })
@@ -31,7 +29,6 @@ app.get('/list/overview', function(req, res) {
 
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
-
 
 
 var server = app.listen(3000, function() {

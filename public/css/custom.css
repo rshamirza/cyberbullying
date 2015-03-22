@@ -59,6 +59,15 @@ h3.center
 	text-align: center;
 }
 
+div.box 
+{
+    width: 430px;
+    height: 445px;
+    border: thin solid black;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+}
 .right-side {
 	float: right;
 }
