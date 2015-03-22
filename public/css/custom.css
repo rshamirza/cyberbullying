@@ -75,3 +75,7 @@ h3.center
     margin-bottom: -0.1em;
 }
 
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}

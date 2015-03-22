@@ -1,4 +1,5 @@
 var express = require('express');
+var Qs = require('qs');
 var app = express();
 
 // dburl to a mongodb server hosted in the cloud (i.e., mongolab)
@@ -24,7 +25,13 @@ app.get('/list/overview', function(req, res) {
     res.render('surveyOverview.jade', {
         survey: survey
     })
-})
+});
+
+app.post('/results/:params', function (req, res) {
+    var responsesCollection = db.get('responses');
+    var paramsObject = Qs.parse(req.params.params);
+    responsesCollection.insert(paramsObject);
+});
 
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
