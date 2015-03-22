@@ -1,36 +1,8 @@
 extends layout.jade
 block content
-    each item in survey
-        div.four.columns
-            h5 Instructions:
-            | Overview:  
-            br
-            | The purpose of this research is to better understand cyberaggression and cyberbullying in online social networks. Please help us by answering the questions for each image and its associated posts on Instagram. Use the definitions below to answer the questions about the different types of content that is posted.
-            br
-            br 
-            | Cyberaggression is broadly defined as using digital media to intentionally harm another person. Examples include negative content and words such as profanity, slang and abbreviations that would be used in negative posts such as hate, fight, wtf.
-            br 
-            br
-            | Cyberbullying is one form of cyberaggression that is more restrictively defined as intentional aggression that is repeatedly carried out in an electronic context against a person who cannot easily defend him or herself. Thus, cyberbullying consists of three main features: (1) an act of aggression online; (2) an imbalance of power between the individuals involved; and (3) it is repeated over time. An imbalance of power can include posts against an individual who cannot easily defend him or herself and or can include several individuals negatively targeting one individual.
-            br
-            br 
-            | Definition of a victim: The individual that is the target of aggression/insult/harassment. Definition of a perpetrator: The individual who posts aggressive/insulting/harassing/ unwanted questions/comments.
-            br 
-            br
-            | Definition of defenders: Individuals with posts that dislike the cyberbullying and defend the victim from the perpetrators of aggression/insults/harassment. The goal of the defender is to help the victim who is being cyberbullied, even with usage of offensive words by attacking the perpetrators.
-            br
-            br 
-            | Definition of a follower: Individuals that take an active part in cyberaggression or cyberbullying but do not start the cyberaggression or cyberbullying.
-       
-        div.four.columns
-            h5 Process:
-            | Read each post
-            br
-            | Answer the questions about the image and its posts, using the best of your ability
-            br 
-            br
-                   
-            
+    each item in survey     
+        div.six.columns
+
             img(src=item.image_url)    
             b= item.likes + ' likes'
             br
@@ -39,13 +11,29 @@ block content
             br
             small= item.caption_time
             br
-            br    
-            a(href='/list/survey/next/' + item.profile_owner_id)
-                | Next
+            br
+            h5 Questions
+            | Is there any cyberaggressive behavior in the online posts? Mark yes if there is at least one negative word/comment and or content with intent to harm someone or others.
+            br
+            input(type="radio", name="q1", value="1", checked=q1=="No")
+            | No
+            input(type="radio", name="q1", value="0", checked=q1=="Yes")
+            | Yes
+            br
+            | Is there any cyerbullying in the online post? Mark yes if there are negative words and or comment with intent to harm someone or other, and the posts include two or more repeated negativity against a victim that cannot easily defend him or herself
+            br
+            input(type="radio", name="q2", value="1", checked=q2=="No")
+            | No
+            input(type="radio", name="q2", value="0", checked=q2=="Yes")
+            | Yes
+
+            br 
+            br   
+            a.button(href='/list/survey/next/' + item.profile_owner_id) Next
             br
             
                 
-        div.four.columns
+        div.six.columns
             - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
             h5 Comment:
             - var n = 1;
@@ -53,13 +41,14 @@ block content
                 - var id = eval(user.id + n.toString());
                 - var comment = eval(user.comment + n.toString());
                 - var creation_time = eval(user.creation_time + n.toString());
-                if id
+                - if (id != "" && id !=" ") {
                     b.inline #{id} :                    
                     | #{comment}
                     br
                     small #{creation_time}
                     br
                     br
+                - }
                 - n++;
 
-            
+        
