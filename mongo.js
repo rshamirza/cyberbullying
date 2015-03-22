@@ -15,14 +15,32 @@ app.db = db
 app.set('view engine', 'jade');
 
 
-app.get('/list/survey', function(req, res) {
-    res.render('listSurvey.jade', {
-        survey: survey
-    })
+app.get('/surveys', function (req, res) {
+    res.redirect('survey/0')
+})
+
+app.get('/survey/:index', function(req, res) {
+    var index = parseInt(req.params.index)
+    if (index >= 0 && index < survey.length)
+    {
+        var item = survey[req.params.index];
+        res.render('listSurvey.jade', {
+            item: item,
+            next: parseInt(req.params.index) + 1
+        })
+    } else {
+        res.redirect('/surveys')
+    }
 })
 
 app.get('/list/overview', function(req, res) {
     res.render('surveyOverview.jade', {
+        survey: survey
+    })
+})
+
+app.get('/list/results', function(req, res) {
+    res.render('surveyResults.jade', {
         survey: survey
     })
 })

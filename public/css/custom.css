@@ -59,6 +59,11 @@ h3.center
 	text-align: center;
 }
 
+h5.center
+{
+    text-align: center;
+}
+
 div.box 
 {
     width: 430px;
