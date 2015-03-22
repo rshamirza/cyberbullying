@@ -5,8 +5,8 @@ $('#next-btn').on('click', function () {
     $(':checked').each(function () {
         params[$(this).attr('name')] = $(this).val();
     });
-    var paramsString = JSON.stringify(params);
-    // todo don't forget hidden fields
+    params['profile_owner_id'] = document.getElementsByName('profile_owner_id')[0].value;
+    params['caption_time'] = document.getElementsByName('caption_time')[0].value;
     $.ajax({
         type: 'POST',
         url: '/results',
@@ -14,7 +14,7 @@ $('#next-btn').on('click', function () {
         contentType: 'application/json',
         dataType: 'json',
         success: function (data) {
-            goToNext();
+            alert(data);
         },
         failure: function (err) {
             alert(err);

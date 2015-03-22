@@ -37,15 +37,16 @@ app.get('/survey/:index', function(req, res) {
 
 app.get('/list/overview', function(req, res) {
     res.render('surveyOverview.jade')
-})
+});
 
 
 app.get('/list/results', function(req, res) {
-    var result = app.db.get('responses')
+    var result = app.db.get('responses');
 
+    console.log(result);
     // execute the query to find those matched limiting to 20
-    result.find({}, function(err, res) {
-
+    result.find({}, {}, function(err, results) {
+        console.log(res);
         res.render('surveyResults.jade', {
             surveyRes: res
         })
@@ -53,10 +54,11 @@ app.get('/list/results', function(req, res) {
 
 });
 
-app.post('/results/:params', function (req, res) {
-    console.log("did we get in here?");
+app.post('/results', function (req, res) {
     var responsesCollection = db.get('responses');
     var paramsObject = Qs.parse(req.params.params);
+    console.log('params Object: ');
+    console.log(paramsObject);
     responsesCollection.insert(paramsObject);
 });
 
