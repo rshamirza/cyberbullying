@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.12.2",
     "express": "^4.11.2",
     "jade": "^1.9.1",
-    "lodash": "^3.0.1"
+    "lodash": "^3.0.1",
+    "monk": "^0.9.1",
+    "qs": "^2.4.1"
   }
 }
