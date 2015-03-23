@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var cool = require('cool-ascii-faces');
+
 
 // dburl to a mongodb server hosted in the cloud (i.e., mongolab)
 var dburl = 'mongodb://cyberbullying:1234@ds041140.mongolab.com:41140/cyberbullying';
@@ -63,7 +65,11 @@ app.post('/results', function (req, res) {
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
 
-app.set('port', (process.env.PORT || 3000))
+app.get('/', function(request, response) {
+  response.send(cool());
+});
+
+app.set('port', (process.env.PORT || 5000))
 
 var server = app.listen(app.get('port'), function() {
 
