@@ -7,7 +7,7 @@ block content
                 thead
                     tr
                         th Profile Owner ID
-                        th Owner Caption
+                        th Caption Time
                         th Question1
                         th Question2
                 tbody
@@ -15,8 +15,16 @@ block content
                     tr
                         td= res.profile_owner_id
                         td= res.caption_time
-                        td= res.q1
-                        td= res.q2
+                        - if (res.q1 == 1){
+                            td(style = 'color:red')= 'Yes'
+                        - } else {
+                            td(style = 'color:blue')= 'No'
+                        - }
+                        - if (res.q2 == 1){
+                            td(style = 'color:red')= 'Yes'
+                        - } else {
+                            td(style = 'color:blue')= 'No'
+                        - }
                     
                     
                     

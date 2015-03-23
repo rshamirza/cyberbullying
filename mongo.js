@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var cool = require('cool-ascii-faces');
+
 
 // dburl to a mongodb server hosted in the cloud (i.e., mongolab)
 var dburl = 'mongodb://cyberbullying:1234@ds041140.mongolab.com:41140/cyberbullying';
@@ -44,6 +46,9 @@ app.get('/list/overview', function(req, res) {
     res.render('surveyOverview.jade')
 });
 
+app.get('/', function(request, response) {
+    response.send(cool());
+});
 
 app.get('/list/results', function(req, res) {
     var result = app.db.get('responses');
@@ -53,7 +58,6 @@ app.get('/list/results', function(req, res) {
             surveyRes: res1
         })
     })
-
 });
 
 app.post('/results', function (req, res) {
@@ -69,6 +73,5 @@ var server = app.listen(app.get('port'), function() {
 
     var host = server.address().address;
     var port = server.address().port;
-
     console.log('App listening at http://%s:%s', host, port)
 });
