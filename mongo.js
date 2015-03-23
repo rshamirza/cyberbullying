@@ -11,6 +11,8 @@ var survey = require('./data/survey.json');
 // get db
 var db = require('monk')(dburl);
 
+app.set('port', (process.env.PORT || 3000));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -44,6 +46,9 @@ app.get('/list/overview', function(req, res) {
     res.render('surveyOverview.jade')
 });
 
+app.get('/', function(request, response) {
+    response.send(cool());
+});
 
 app.get('/list/results', function(req, res) {
     var result = app.db.get('responses');
@@ -53,7 +58,6 @@ app.get('/list/results', function(req, res) {
             surveyRes: res1
         })
     })
-
 });
 
 app.post('/results', function (req, res) {
@@ -65,15 +69,9 @@ app.post('/results', function (req, res) {
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
 
-app.set('port', (process.env.PORT || 5000))
-
-app.get('/', function(request, response) {
-  response.send(cool());
-});
-
 var server = app.listen(app.get('port'), function() {
 
-    var host = server.address().address
-    var port = server.address().port
+    var host = server.address().address;
+    var port = server.address().port;
     console.log('App listening at http://%s:%s', host, port)
-})
+});
