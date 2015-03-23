@@ -1,40 +1,35 @@
 extends layout.jade
 block content
-    div.row
+    div.row.white-container                                      
         div.six.columns
+            h5.center Image
             div.row
                 img(src=item.image_url) 
                 br  
-            div.row
-                small= item.caption_time
-                br
-                b= item.likes + ' likes'
-                br
+            div(align = 'center').row
                 b.inline= item.profile_owner_id + ': '
-                = item.owner_caption 
-                br
+                = item.owner_caption
                 br 
+                b(style = 'color:red')= item.likes + ' likes'
+                br
+                small(style = 'color:green')= item.caption_time
 
         div.six.columns
+            h5.center Posts
             div.box 
                 - var user = {id:'item.user_id_', comment:'item.comment_', creation_time:'item.creation_time_'};
-                h5 Comment:
                 - var n = 1;
                 while n < 150
                     - var id = eval(user.id + n.toString());
                     - var comment = eval(user.comment + n.toString());
-                    - var creation_time = eval(user.creation_time + n.toString());
                     - if (id != "" && id !=" ") {
                         b.inline #{id} :                    
                         | #{comment}
-                        br
-                        small #{creation_time}
-                        br
-                        br
+                        hr
                     - }
                     - n++;
 
-    div.row.container
+    div.row.div.blue-container
         h5.center Questions
         | Is there any cyberaggressive behavior in the online posts? Mark yes if there is at least one negative word/comment and or content with intent to harm someone or others.
         br
@@ -54,6 +49,8 @@ block content
   
     div(align = 'center')  
         a.button.not-active#next-btn Next
+        br
+        small= '( Next button is deactivated untill answering the two questions )'
         br
         br
         

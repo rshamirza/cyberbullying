@@ -7,38 +7,39 @@
 .person .role { font-size: 90%;}
 
 img {
-	max-width:100%;
-	border: 1px grey solid;
+    max-width:100%;
+    border: 2px grey solid;
 }
 
 #example-grid .columns, #example-grid .column{
-	background-color: #eee;
-	border-radius: 4px;
-	margin-bottom: 3px;
-	border: 1px #aaa solid;
-	padding: 2px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-bottom: 3px;
+    border: 1px #aaa solid;
+    padding: 2px;
 }
 
 body {
-    background-color: #FFFFF0;
+    background-color: #FFFFD6;
 }
 
 .button {
    background-color: white;
+   color: blue;
 }
 
 .white-container {
-	border-radius: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	background-color: white;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
 }
 
 .blue-container {
-	border-radius: 5px;
-	padding: 10px;
-	margin: 10px;
-	background-color: lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #D6EBFF;
 }
 
 .photo {
@@ -56,7 +57,7 @@ b.inline {
 
 h3.center
 {
-	text-align: center;
+    text-align: center;
 }
 
 h5.center
@@ -74,7 +75,7 @@ div.box
     padding: 10px;
 }
 .right-side {
-	float: right;
+    float: right;
 }
 
 .quote-text {
