@@ -65,11 +65,11 @@ app.post('/results', function (req, res) {
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
 
+app.set('port', (process.env.PORT || 5000))
+
 app.get('/', function(request, response) {
   response.send(cool());
 });
-
-app.set('port', (process.env.PORT || 5000))
 
 var server = app.listen(app.get('port'), function() {
 
