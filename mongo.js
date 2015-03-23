@@ -9,6 +9,8 @@ var survey = require('./data/survey.json');
 // get db
 var db = require('monk')(dburl);
 
+app.set('port', (process.env.PORT || 3000));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -63,7 +65,7 @@ app.post('/results', function (req, res) {
 // set where the static contents are (e.g., css, js)
 app.use(express.static(__dirname + '/public'));
 
-var server = app.listen(3000, function() {
+var server = app.listen(app.get('port'), function() {
 
     var host = server.address().address;
     var port = server.address().port;
