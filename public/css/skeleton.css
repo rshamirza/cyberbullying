@@ -182,9 +182,15 @@ input[type="button"] {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
+<<<<<<< HEAD
+  background-color: #add8e6;
+  border-radius: 4px;
+  border: 2px solid #bbb;
+=======
   background-color: transparent;
   border-radius: 4px;
   border: 1px solid #bbb;
+>>>>>>> 3eaeca14cad29b553002d30a9312a6b29e209ec5
   cursor: pointer;
   box-sizing: border-box; }
 .button:hover,
